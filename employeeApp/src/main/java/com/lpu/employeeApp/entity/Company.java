@@ -1,14 +1,12 @@
-package com.lpu.demo.entity;
+package com.lpu.employeeApp.entity;
 
 import jakarta.persistence.*;
-
-import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-public class College implements Serializable{
-		
-		private static final long serialVersionUID = 1L;
+public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +14,9 @@ public class College implements Serializable{
     private String name;
     private String location;
 
-    @OneToMany(mappedBy = "college", cascade =  CascadeType.ALL)
-    
-    private List<Student> students;
-    
-    public College() {}
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Employee> employees;
 
 	public int getId() {
 		return id;
@@ -46,12 +42,12 @@ public class College implements Serializable{
 		this.location = location;
 	}
 
-	public List<Student> getStudents() {
-		return students;
+	public List<Employee> getEmployees() {
+		return employees;
 	}
 
-	public void setStudents(List<Student> students) {
-		this.students = students;
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
 	}
-    
+
 }
