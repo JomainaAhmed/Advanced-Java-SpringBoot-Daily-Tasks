@@ -1,9 +1,0 @@
-package com.lpu.FileData.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.lpu.FileData.entity.*;
-
-
-	public interface ProductRepo extends JpaRespository <Product, Long>{
-		
-	}
