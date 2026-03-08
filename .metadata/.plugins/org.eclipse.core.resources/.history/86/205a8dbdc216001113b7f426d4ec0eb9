@@ -1,0 +1,22 @@
+package com.lpu.demo.cache;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+
+
+import com.lpu.demo.repository.StudentRepository;
+
+public class StudentServiceCache {
+	
+	@Autowired
+	private StudentRepository studentRepo;
+	
+	//Cache data when first fetched
+	@Cacheable(value = "students", key = "#result.id")
+	public Student addStudent(Student newstudent) {
+		return 
+	}
+	
+	
+
+}

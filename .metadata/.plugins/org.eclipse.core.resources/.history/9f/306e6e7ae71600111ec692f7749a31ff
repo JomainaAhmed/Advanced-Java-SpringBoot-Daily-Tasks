@@ -1,0 +1,5 @@
+package com.lpu.MobileCaseStudy.dto;
+
+public class MobileDTO {
+
+}

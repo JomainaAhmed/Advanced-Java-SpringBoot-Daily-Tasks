@@ -1,0 +1,24 @@
+package com.lpu.demo_security1.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig {
+	
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) {
+		
+		http.authorizeHttpRequests((req) -> req.anyRequest().authenticated());
+		//req.anyRequest().permitAll());
+		http.formLogin(Customizer.withDefaults()); //chrome login page
+		http.httpBasic(Customizer.withDefaults()); //postman basic auth
+		return http.build();
+	}
+
+}

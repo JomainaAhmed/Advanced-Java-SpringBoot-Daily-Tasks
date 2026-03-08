@@ -1,0 +1,5 @@
+package com.lpu.StudentManagementSystem.service;
+
+public class StudentService {
+
+}

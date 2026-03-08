@@ -1,0 +1,63 @@
+package com.lpu.StudentManagementSystem.service;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.lpu.StudentManagementSystem.entity.Student;
+import com.lpu.StudentManagementSystem.Repository.*;
+
+@Service
+public class StudentService {
+
+    private final StudentRepository repository;
+
+    public StudentService(StudentRepository repository) {
+        this.repository = repository;
+    }
+
+    public Student createStudent(Student student) {
+        return repository.save(student);
+    }
+
+    public Student getStudentById(int id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public List<Student> getAllStudents() {
+        return repository.findAll();
+    }
+
+    public Student updateStudent(int id, Student student) {
+        student.setId(id);
+        return repository.save(student);
+    }
+
+    public void deleteStudent(int id) {
+        repository.deleteById(id);
+    }
+    
+    public Page<Student> getStudents(int pageNo, int pageSize) {
+
+        PageRequest pageable = PageRequest.of(pageNo, pageSize);
+
+        return repository.findAll(pageable);
+    }
+    
+    public String uploadFiles(int id, MultipartFile profileImage, MultipartFile assignmentFile) throws IOException {
+
+        Student student = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        student.setProfileImage(profileImage.getBytes());
+        student.setAssignmentFile(assignmentFile.getBytes());
+
+        repository.save(student);
+
+        return "Profile Image and Assignment File Uploaded Successfully";
+    }
+}

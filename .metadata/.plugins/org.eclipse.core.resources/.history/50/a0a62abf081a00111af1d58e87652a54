@@ -1,0 +1,5 @@
+package com.lpu.StudentManagementSystem.controller;
+
+public class StudentController {
+
+}

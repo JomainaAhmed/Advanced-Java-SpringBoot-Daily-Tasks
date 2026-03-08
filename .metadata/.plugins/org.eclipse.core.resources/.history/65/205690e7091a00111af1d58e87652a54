@@ -1,0 +1,5 @@
+package com.lpu.StudentManagementSystem.Repository;
+
+public class StudentRepository {
+
+}

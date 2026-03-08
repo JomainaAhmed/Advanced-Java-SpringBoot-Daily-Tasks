@@ -1,0 +1,10 @@
+package com.lpu.demo.controller;
+
+@Configuration
+public class RedisConfig {
+
+    @Bean
+    public RedisCacheManager cacheManager(RedisConnectionFactory factory) {
+        return RedisCacheManager.builder(factory).build();
+    }
+}

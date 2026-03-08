@@ -1,0 +1,5 @@
+package com.lpu.employeeApp.repository;
+
+public class CompanyRepository {
+
+}

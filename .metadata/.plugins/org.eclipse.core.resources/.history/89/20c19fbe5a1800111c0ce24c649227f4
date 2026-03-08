@@ -1,0 +1,27 @@
+package com.lpu.FileData.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+
+import com.lpu.FileData.entity.Product;
+import com.lpu.FileData.repository.ProductRepo;
+
+@Service
+public class ProductService {
+
+    @Autowired
+    private ProductRepository productrepo;
+
+    // Save multiple products
+    public List<Product> saveAllProduct(List<Product> list) {
+        return productrepo.saveAll(list);
+    }
+
+    // Pagination
+    public List<Product> productPagination(int pageNumber, int size) {
+        return productrepo.findAll(PageRequest.of(pageNumber, size)).getContent();
+    }
+}

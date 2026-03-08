@@ -1,0 +1,6 @@
+package com.lpu.employeeApp.exception;
+
+public class CompanyNotFoundException extends RuntimeException {
+	
+
+}

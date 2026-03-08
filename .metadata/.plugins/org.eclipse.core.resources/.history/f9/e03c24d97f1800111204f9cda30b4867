@@ -1,0 +1,4 @@
+spring.application.name=demo-security1
+
+spring.security.user.name=XYZ
+spring.security.user.password=123

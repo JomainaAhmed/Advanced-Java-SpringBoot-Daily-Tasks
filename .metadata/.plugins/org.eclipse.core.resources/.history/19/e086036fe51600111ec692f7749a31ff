@@ -1,0 +1,15 @@
+package com.lpu.MobileCaseStudy.entity;
+
+public class Mobile {
+	
+	@Id
+	@Generated
+	private int id;
+	private String brandName;
+	private String modelName;
+	private int price;
+	private int ram;
+	private int storage;
+	private String colour;
+
+}

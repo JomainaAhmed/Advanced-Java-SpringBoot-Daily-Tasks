@@ -1,0 +1,13 @@
+package com.lpu.MobileCaseStudy.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.stereotype.Repository;
+import com.lpu.MobileCaseStudy.entity.Mobile;
+import java.util.List;
+
+
+public interface MobileRepository extends JpaRepository<Mobile, Integer> {
+	
+	List<Mobile> findByBrandNameIgnoreCase(String brandName);
+
+}

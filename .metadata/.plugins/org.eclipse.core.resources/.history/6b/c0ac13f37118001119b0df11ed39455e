@@ -1,0 +1,5 @@
+package com.lpu.demo_security1.config;
+
+public class WebSecurityConfig {
+
+}

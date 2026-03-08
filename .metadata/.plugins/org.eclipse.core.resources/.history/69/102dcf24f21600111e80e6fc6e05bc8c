@@ -1,0 +1,28 @@
+package com.lpu.MobileCaseStudy.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.web.bind.annotation.GetMapping;
+	import org.springframework.web.bind.annotation.PathVariable;
+	import org.springframework.web.bind.annotation.PostMapping;
+	import org.springframework.web.bind.annotation.RequestBody;
+	import org.springframework.web.bind.annotation.RestController;
+
+	import com.lpu.MobileCaseStudy.entity.Mobile;
+	import com.lpu.MobileCaseStudy.cache.MobileServiceCache;
+
+	@RestController
+	public class MobileControllerCache {
+		@Autowired
+		private MobileServiceCache service;
+		
+		@PostMapping("/stu")
+		public Mobile saveStudent(@RequestBody Mobile mobile) {
+			return service.addMobile(mobile);
+		}
+		
+		@GetMapping("/stu/{id}")
+		public Mobile updateMobile(@PathVariable int id,  @RequestBody Mobile mobile) {
+			return service.updateMobile(id, mobile);
+		}
+
+	}

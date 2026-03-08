@@ -1,0 +1,14 @@
+package com.lpu.demo_security1.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController   // Postman -> Auth -> Basic Auth -> username + password
+public class SecurityController {
+
+    @GetMapping("/hi")
+    public String sayHi(String str) {
+        return "Hi";
+    }
+    
+}

@@ -1,0 +1,39 @@
+package com.lpu.StudentManagementSystem.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.lpu.StudentManagementSystem.service.*;
+import com.lpu.StudentManagementSystem.entity.*;
+
+@Service
+public class StudentService {
+
+    private final StudentRepository repository;
+
+    public StudentService(StudentRepository repository) {
+        this.repository = repository;
+    }
+
+    public Student createStudent(Student student) {
+        return repository.save(student);
+    }
+
+    public Student getStudentById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public List<Student> getAllStudents() {
+        return repository.findAll();
+    }
+
+    public Student updateStudent(Long id, Student student) {
+        student.setId(id);
+        return repository.save(student);
+    }
+
+    public void deleteStudent(Long id) {
+        repository.deleteById(id);
+    }
+}

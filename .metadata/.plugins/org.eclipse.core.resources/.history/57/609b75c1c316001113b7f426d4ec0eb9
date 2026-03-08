@@ -1,0 +1,46 @@
+package com.lpu.demo.cache;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import com.lpu.demo.entity.*;
+
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+
+
+import com.lpu.demo.repository.StudentRepository;
+
+public class StudentServiceCache {
+	
+	@Autowired
+	private StudentRepository studentRepo;
+	
+	//Cache data when first fetched
+	@Cacheable(value = "students", key = "#result.id")
+	public Student getStudentById(int id) {
+		System.err.println("Fetching from DB....."); // just to check cache working
+		return studentRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Student not found"));
+	}
+	
+	//When adding/updating student, update cache
+	@CachePut(value = "students", key = "#result.id")
+	public Student addStudent(Student newstudent) {
+		return studentRepo.save(newstudent);
+	}
+	
+	//#id -> method parameter (Student ID)
+	// So when you call getStudentById(10), cache key = 10.
+	
+	@CachePut(value = "students", key = "#id")
+	public Student updateStudent(int id, Student student) {
+		Student existing = getStudentById(id);
+		existing.setName(student.getName());
+		existing.setPhone(student.getPhone());
+		return studentRepo.save(existing);
+
+	}
+	
+	
+	
+	
+
+}

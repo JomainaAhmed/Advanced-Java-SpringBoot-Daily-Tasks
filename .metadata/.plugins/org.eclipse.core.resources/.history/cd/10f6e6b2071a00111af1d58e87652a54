@@ -1,0 +1,5 @@
+package com.lpu.StudentManagementSystem.entity;
+
+public class Student {
+
+}
